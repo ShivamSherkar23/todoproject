@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<style>
+    body {
+        background-color: black;
+        font-family: verdana;
+    }
+</style>
+
+<h1 style="color:white;">To Do List</h1>
+
+<p style="color:white;">your list of the items
+
+<form action="/addTodoItem/" method="post">{% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Add Item">
+</form>
+
+<ul style="color:white;">
+    {% for i in all_items %}
+    <li>{{i.content}}<form action="/deleteTodoItem/{{i.id}}/" method="post">{% csrf_token %}
+            <input type="submit" value="Delete" font-family="verdana">
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+</p>
+
+</html>
